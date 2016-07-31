@@ -23,52 +23,19 @@ public class MakeCodeActivity extends AppCompatActivity {
 
 
     private final static int QR_WIDTH = 300, QR_HEIGHT = 300;
-    private static final int IMAGE_HALFWIDTH = 30;
     Bitmap bitmap1;
     private ImageView iv_code;
     private EditText et_name;
     private Button bt_make;
 
-//    private Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(android.os.Message msg) {
-//            if (msg.what == 2) {
-//                Bitmap bitmap1 = (Bitmap) msg.obj;
-//
-//                if(bitmap1!=null){
-//
-//                    Log.i("fyg",bitmap1.toString());
-//                    Matrix matrix = new Matrix();
-//                    float sx = (float) 1 * IMAGE_HALFWIDTH / bitmap1.getWidth();
-//                    float sy = (float) 1 * IMAGE_HALFWIDTH / bitmap1.getHeight();
-//                    matrix.setScale(sx, sy);
-//                    bitmap = Bitmap.createBitmap(bitmap1, 0, 0, bitmap1.getWidth(),bitmap1.getHeight(), matrix, false);
-//                    try {
-//                        // image.setImageBitmap(createBitmap());
-//                        iv_code.setImageBitmap(createBitmap(new String(et_name.getText().toString().trim().getBytes(), "ISO-8859-1")));
-//
-//                    } catch (Exception e) {
-//                        // TODO Auto-generated catch block
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
-//    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_code);
-
         iv_code = (ImageView) findViewById(R.id.iv_code);
         et_name = (EditText) findViewById(R.id.et_name);
         bt_make = (Button) findViewById(R.id.bt_make);
-
-
-
         et_name.setText("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1463989015&di=a09bb7141568b9919897b073682541e6&src=http://a0.att.hudong.com/70/80/01300000208920122217801646936.jpg");
-
         bt_make.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +58,6 @@ public class MakeCodeActivity extends AppCompatActivity {
     private Bitmap createImage(ImageView qr_img,String s) {
         try {
             QRCodeWriter writer = new QRCodeWriter();
-
             String text = s;
             if (text == null || "".equals(text) || text.length() < 1) {
                 //return;
@@ -116,7 +82,6 @@ public class MakeCodeActivity extends AppCompatActivity {
 
                 }
             }
-
             bitmap1 = Bitmap.createBitmap(QR_WIDTH, QR_HEIGHT,
                     Bitmap.Config.ARGB_8888);
             bitmap1.setPixels(pixels, 0, QR_WIDTH, 0, 0, QR_WIDTH, QR_HEIGHT);

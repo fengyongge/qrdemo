@@ -67,13 +67,8 @@ public class MipcaActivityCapture extends Activity implements Callback {
 		setContentView(R.layout.activity_capture);
 		CameraManager.init(getApplication());
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
-//		MyApp myApp = (MyApp) getApplicationContext();
-//		merchant_id = myApp.getMerchant_id();
-//
-//		token = myApp.getToken();
 
 		final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
-		 
 	    final String tmDevice, tmSerial, tmPhone, androidId;
 	    tmDevice = "" + tm.getDeviceId();
 	    tmSerial = "" + tm.getSimSerialNumber();
@@ -169,87 +164,8 @@ public class MipcaActivityCapture extends Activity implements Callback {
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
 		final String resultString = result.getText().toString();
-
-
 		Toast.makeText(MipcaActivityCapture.this,"resultString:"+resultString,Toast.LENGTH_SHORT).show();
-
-
-//		if (StringUtils.isNotEmpty(resultString)) {
-//
-//			if (resultString.contains("##yaoqingma=")) {
-//				int indexOf = resultString.indexOf("##yaoqingma=");
-//				String code = resultString.substring(indexOf + 12);// 邀请码
-//
-//				
-//				addSuppier(code);
-//
-//			} else if (resultString.contains("http")) {
-//				Intent resultIntent = new Intent(MipcaActivityCapture.this,
-//						WebViewActivity.class);
-//				resultIntent.putExtra("is_need_token", false);
-//				resultIntent.putExtra("url", resultString);
-//				resultIntent.putExtra("title", "扫一扫");
-//				startActivity(resultIntent);
-//			} else {
-//				AlertHelper.create2BTAlerttest(MipcaActivityCapture.this, "扫描结果", resultString,
-//						"确定", "取消", new AlertCallback() {
-//					
-//					@Override
-//					public void onConfirm(String data) {
-//						Intent intent = new Intent();
-//						intent.putExtra("resultString", resultString);
-//						setResult(123, intent);
-//						finish();
-//					}
-//					
-//					@Override
-//					public void onCancel() {
-//						// TODO Auto-generated method stub
-//						
-//					}
-//				});
-//			}
-//
-//		} else {
-//			Toast.makeText(MipcaActivityCapture.this, "Scan failed!",
-//					Toast.LENGTH_SHORT).show();
-//		}
-//
-//		// if (resultString.equals("")) {
-//		// Toast.makeText(MipcaActivityCapture.this, "Scan failed!",
-//		// Toast.LENGTH_SHORT).show();
-//		// }else if (hasSurface) {
-//		// String string = resultString.toString();
-//		// if (string.contains("##yaoqingma=")) {
-//		// int indexOf = string.indexOf("##yaoqingma=");
-//		// String substring = string.substring(0, indexOf);//邀请的 url
-//		// String code = string.substring(indexOf+10);//邀请码
-//		// addSuppier(code);
-//		// }
-//		//
-//		//
-//		// }else{
-//		// Intent resultIntent = new
-//		// Intent(MipcaActivityCapture.this,WebViewActivity.class);
-//		//
-//		// //resultIntent.putString("class", resultString);
-//		//
-//		// resultIntent.putExtra("url",resultString);
-//		// resultIntent.putExtra("class", "扫一扫");
-//		// startActivity(resultIntent);
-//		// finish();
-//		//
-//		// // Intent intent = new Intent();
-//		// // intent.setAction("android.intent.action.VIEW");
-//		// // Uri content_url = Uri.parse(obj.getText());
-//		// // intent.setData(content_url);
-//		// // startActivity(intent);
-//		// // finish();
-//		//
-//		// }
-//		// MipcaActivityCapture.this.finish();
-
-
+		//处理扫描结果
 	}
 
 	private void initCamera(SurfaceHolder surfaceHolder) {
@@ -364,28 +280,9 @@ public class MipcaActivityCapture extends Activity implements Callback {
 				Result result;
 				result = reader.decode(bitmap1, hints);
 				String string = result.toString();
-
 				Log.i("fyg","string:"+string);
 				Toast.makeText(MipcaActivityCapture.this,"相册里面的string:"+string,Toast.LENGTH_SHORT).show();
-				
-//				if (StringUtils.isNotEmpty(string)) {
-//					if (string.contains("##yaoqingma=")) {
-//						int indexOf = string.indexOf("##yaoqingma=");
-//						String substring = string.substring(0, indexOf);
-//						String code = string.substring(indexOf + 12);
-//						addSuppier(code);
-//					} else {
-//						Intent resultIntent = new Intent(
-//								MipcaActivityCapture.this,
-//								WebViewActivity.class);
-//						resultIntent.putExtra("url", result.toString());
-//						resultIntent.putExtra("title", "扫一扫");
-//						resultIntent.putExtra("is_need_token", false);
-//						startActivity(resultIntent);
-//						finish();
-//					}
 
-//				}
 
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -403,40 +300,8 @@ public class MipcaActivityCapture extends Activity implements Callback {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			// finish();
-
 		}
-
 	};
 
-//	public void addSuppier(String code) {
-//
-//		MyNet.Inst().useInviteCode(MipcaActivityCapture.this, token,
-//				merchant_id, code, new ApiCallback() {
-//
-//					@Override
-//					public void onNetError(String data) {
-//						// TODO Auto-generated method stub
-//						AlertHelper.create1BTAlert(MipcaActivityCapture.this,
-//								data);
-//					}
-//
-//					@Override
-//					public void onDataSuccess(JSONObject data) {
-//						// TODO Auto-generated method stub
-//						AlertHelper.create1BTAlert(MipcaActivityCapture.this,
-//								data.getString("msg"));
-////						MipcaActivityCapture.this.finish();
-//					}
-//
-//					@Override
-//					public void onDataError(JSONObject data) {
-//						// TODO Auto-generated method stub
-//						AlertHelper.create1BTAlert(MipcaActivityCapture.this,
-//								data.getString("msg"));
-//					}
-//				});
-//	};
 
 }
